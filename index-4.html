@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17120f">
+<title>Донер CITY — меню и доставка</title>
+<style>
+:root{--bg:#100e0c;--panel:#1b1713;--panel2:#241d17;--gold:#f3ad50;--orange:#e76b3c;--cream:#fff4e4;--muted:#c2b5a5;--line:#3d3025;--green:#25d366}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit}.topbar{position:sticky;top:0;z-index:10;background:#100e0cf2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:1000;letter-spacing:1px;font-size:clamp(20px,4vw,30px);line-height:1}.brand span{color:var(--orange)}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:6px}
+.top-actions{display:flex;gap:8px;align-items:center}.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}.btn:hover{transform:translateY(-1px)}.gold{background:linear-gradient(135deg,var(--gold),#df762f);color:#21140b}.outline{border:1px solid #6d5136;color:var(--cream);background:transparent}.green{background:var(--green);color:#062b13}.cart-pill{background:var(--panel2);border:1px solid var(--line);color:var(--cream)}
+.hero{padding:46px 5vw 36px;display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center;max-width:1300px;margin:auto}
+.eyebrow{color:var(--gold);font-weight:900;letter-spacing:3px;font-size:12px;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,72px);line-height:.98;margin:12px 0 16px;letter-spacing:-2px}.hero h1 span{color:var(--orange)}.hero p{color:var(--muted);font-size:17px;line-height:1.6;max-width:520px}.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.hero-image{min-height:300px;border-radius:28px;border:1px solid #57402b;background:linear-gradient(0deg,#100e0c55,#100e0c00),url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=85') center/cover;box-shadow:0 20px 70px #0008;position:relative;overflow:hidden}.hero-tag{position:absolute;bottom:18px;left:18px;background:#17120fe8;border:1px solid #5a402b;border-radius:14px;padding:13px 16px;font-weight:800}.hero-tag span{display:block;color:var(--gold);font-size:12px;margin-top:4px}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:1200px;margin:0 auto;padding:0 5vw 32px}.feature{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:15px;text-align:center;color:var(--muted);font-size:13px}.feature b{display:block;color:var(--cream);font-size:14px;margin-top:5px}
+main{max-width:1300px;margin:auto;padding:0 5vw 60px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:20px 0}.section-head h2{font-size:clamp(26px,4vw,38px);margin:0}.section-head p{color:var(--muted);margin:6px 0 0}.search{width:min(100%,290px);background:var(--panel);border:1px solid var(--line);color:var(--cream);border-radius:12px;padding:13px 14px;font:inherit}
+.category-nav{display:flex;gap:8px;overflow-x:auto;padding:5px 0 18px;scrollbar-width:thin}.category-nav button{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:99px;padding:10px 15px;font-weight:800;cursor:pointer}.category-nav button.active{background:var(--gold);color:#241509;border-color:var(--gold)}
+.category-title{display:flex;align-items:center;gap:10px;margin:28px 0 14px;font-size:23px}.category-title:after{content:"";height:1px;flex:1;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.product{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:.2s}.product:hover{border-color:#89613a;transform:translateY(-2px)}.product img{width:100%;height:155px;object-fit:cover;background:#2b2119}.product-body{padding:13px;display:flex;flex-direction:column;flex:1}.product h3{font-size:15px;margin:0 0 8px;line-height:1.3}.product .desc{font-size:12px;color:var(--muted);margin:0 0 12px;min-height:16px}.product-bottom{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px}.price{font-size:17px;font-weight:950;color:var(--gold);white-space:nowrap}.add{width:38px;height:38px;border:0;border-radius:12px;background:var(--gold);color:#21140b;font-size:24px;font-weight:900;cursor:pointer}.qty{display:flex;align-items:center;gap:8px;background:#302419;border-radius:12px;padding:4px}.qty button{border:0;border-radius:8px;width:28px;height:28px;background:#4b3624;color:white;font-weight:900;font-size:18px;cursor:pointer}.qty b{min-width:14px;text-align:center}
+.order-review{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:55px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px}.panel h2{margin:0 0 8px;font-size:25px}.muted{color:var(--muted);font-size:14px;line-height:1.5}.field{display:flex;flex-direction:column;gap:7px;margin:13px 0}.field label{font-weight:750;font-size:13px;color:#ead9c5}.field input,.field textarea,.field select{width:100%;background:#100e0c;border:1px solid #49382a;border-radius:11px;color:var(--cream);padding:13px;font:inherit;outline:none}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold)}.radio-row{display:flex;gap:10px;flex-wrap:wrap}.radio-option{border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:8px;cursor:pointer}.radio-option:has(input:checked){border-color:var(--gold);background:#382819}.radio-option input{accent-color:var(--gold)}.cart-list{display:flex;flex-direction:column;gap:10px;margin:18px 0}.empty{padding:20px;border:1px dashed #57412d;border-radius:12px;text-align:center;color:var(--muted)}.cart-line{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0}.cart-line small{display:block;color:var(--muted);margin-top:4px}.cart-line strong{color:var(--gold);white-space:nowrap}.total{display:flex;justify-content:space-between;font-size:20px;font-weight:900;padding-top:15px;border-top:1px solid var(--line)}.total span:last-child{color:var(--gold)}.full{width:100%;margin-top:14px}.notice{font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px}.review-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.review-links .btn{flex:1}.footer{border-top:1px solid var(--line);padding:28px 5vw;text-align:center;color:var(--muted);font-size:13px}.footer b{color:var(--cream)}.floating-cart{display:none;position:fixed;bottom:14px;left:14px;right:14px;z-index:20;box-shadow:0 8px 35px #0009}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:#241509;font-weight:850;padding:12px 18px;border-radius:12px;z-index:40;display:none}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.hero-image{min-height:260px}.features{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.topbar{padding:12px 4vw}.top-actions .outline{display:none}.hero{padding-top:30px}.hero-image{min-height:220px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product img{height:125px}.product-body{padding:10px}.product h3{font-size:14px}.price{font-size:15px}.order-review{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.search{width:100%}.features{padding-bottom:15px}.floating-cart{display:flex}.top-actions .cart-pill{display:none}}
+@media(max-width:370px){.grid{grid-template-columns:1fr 1fr}.product img{height:105px}.product h3{font-size:13px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" style="text-decoration:none">ДОНЕР <span>CITY</span><small>ВКУС, КОТОРЫЙ ЗАПОМИНАЕТСЯ</small></a>
+  <div class="top-actions">
+    <a class="btn outline" href="#reviews">Отзывы</a>
+    <button class="btn cart-pill" onclick="goCart()">🛒 Корзина <span id="cartCount">0</span></button>
+    <a class="btn gold" href="#menu">Меню</a>
+  </div>
+</header>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Свежо • Вкусно • С любовью</div>
+    <h1>Твой любимый вкус.<br><span>В одном месте.</span></h1>
+    <p>Шаурма, горячая пицца, бургеры и свежие роллы. Выбирай любимые блюда, собери корзину и отправь заказ нам в WhatsApp.</p>
+    <div class="hero-buttons"><a class="btn gold" href="#menu">🍽️ Открыть меню</a><a class="btn outline" href="#order">Оформить заказ ↓</a></div>
+  </div>
+  <div class="hero-image"><div class="hero-tag">ДОНЕР CITY <span>10:00 – 00:00 · Ежедневно</span></div></div>
+</section>
+<div class="features">
+  <div class="feature">🐟<b>Свежие ингредиенты</b></div><div class="feature">🍣<b>Готовим с любовью</b></div><div class="feature">⭐<b>Высокое качество</b></div><div class="feature">🛵<b>Быстрая подача</b></div>
+</div>
+<main>
+  <section id="menu">
+    <div class="section-head"><div><div class="eyebrow">Выбирай, что любишь</div><h2>Наше меню</h2><p>Нажми «+», чтобы добавить блюдо в корзину.</p></div><input id="search" class="search" type="search" placeholder="🔎 Найти блюдо..." oninput="renderMenu()"></div>
+    <div id="categoryNav" class="category-nav"></div>
+    <div id="menuContent"></div>
+  </section>
+  <section class="order-review" id="order">
+    <div class="panel">
+      <div class="eyebrow">Проверь свой выбор</div><h2>🛒 Твоя корзина</h2><p class="muted">Добавь блюда в меню. Сумма заказа рассчитывается автоматически.</p>
+      <div id="cartItems" class="cart-list"><div class="empty">Пока корзина пуста. Выбери что-нибудь вкусное!</div></div>
+      <div class="total"><span>Итого за блюда</span><span id="totalPrice">0 сом</span></div>
+      <p class="notice">Стоимость доставки уточняется у оператора и не включена в сумму.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">Остался один шаг</div><h2>📦 Оформление заказа</h2><p class="muted">Заполни данные — WhatsApp откроется с готовым сообщением. Проверь его и нажми «Отправить».</p>
+      <form id="checkoutForm" onsubmit="sendOrder(event)">
+        <div class="field"><label for="customerName">Твоё имя *</label><input id="customerName" required maxlength="80" placeholder="Например, Азамат"></div>
+        <div class="field"><label>Как получишь заказ? *</label><div class="radio-row"><label class="radio-option"><input type="radio" name="fulfillment" value="Доставка" checked onchange="toggleAddress()"> 🛵 Доставка</label><label class="radio-option"><input type="radio" name="fulfillment" value="Самовывоз" onchange="toggleAddress()"> 🏃 Самовывоз</label></div></div>
+        <div class="field" id="addressField"><label for="customerAddress">Адрес доставки *</label><input id="customerAddress" placeholder="Улица, дом, ориентир"></div>
+        <div class="field"><label for="customerPhone">Твой номер телефона *</label><input id="customerPhone" type="tel" required placeholder="+996 ..." maxlength="30"></div>
+        <div class="field"><label for="payment">Способ оплаты *</label><select id="payment" required><option value="">Выбери способ оплаты</option><option>Наличными при получении</option><option>Перевод / QR (уточнить у оператора)</option><option>Оплата картой (если доступно)</option></select></div>
+        <div class="field"><label for="orderNote">Комментарий к заказу (необязательно)</label><textarea id="orderNote" placeholder="Например, без лука, позвонить по приезде..."></textarea></div>
+        <button class="btn green full" type="submit">📲 Отправить заказ в WhatsApp</button>
+        <p class="notice">WhatsApp откроется на номер +996 777 484 040. Заказ не отправляется автоматически: в WhatsApp нужно нажать «Отправить».</p>
+      </form>
+    </div>
+  </section>
+  <section id="reviews" class="panel" style="margin-top:20px">
+    <div class="eyebrow">Нам важно твоё мнение</div><h2>💬 Отзывы гостей</h2><p class="muted">Оставь хороший или плохой отзыв — он будет подготовлен в WhatsApp для нашего номера. Пожалуйста, отправляй честную обратную связь.</p>
+    <div class="field"><label>Как тебе заказ?</label><div class="radio-row"><label class="radio-option"><input type="radio" name="reviewType" value="Положительный отзыв" checked> ❤️ Всё понравилось</label><label class="radio-option"><input type="radio" name="reviewType" value="Отрицательный отзыв"> 🛠️ Есть замечания</label></div></div>
+    <div class="field"><label for="reviewName">Имя (необязательно)</label><input id="reviewName" maxlength="80" placeholder="Как к тебе обращаться"></div>
+    <div class="field"><label for="reviewText">Твой отзыв *</label><textarea id="reviewText" required maxlength="1000" placeholder="Расскажи, что понравилось или что нам улучшить..."></textarea></div>
+    <button class="btn gold" onclick="sendReview()">Отправить отзыв в WhatsApp</button>
+    <p class="notice">Отзывы отправляются напрямую в WhatsApp и не публикуются автоматически на сайте.</p>
+  </section>
+</main>
+<footer class="footer"><b>ДОНЕР CITY</b><br>Сочное мясо • Горячая пицца • Свежие роллы<br>Ежедневно: 10:00–00:00 · <a href="https://wa.me/996777484040">0777 48 40 40</a><br><br>Готовим с любовью ❤️</footer>
+<button class="btn gold floating-cart" onclick="goCart()">🛒 Корзина · <span id="floatingCount">0</span> · <span id="floatingTotal">0 сом</span></button>
+<div id="toast" class="toast"></div>
+<script>
+const WA_NUMBER='996777484040';
+const photo={
+ shawarma:'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=700&q=80',
+ pizza:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80',
+ fries:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80',
+ nuggets:'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=700&q=80',
+ wings:'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=700&q=80',
+ burger:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80',
+ ramen:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=80',
+ coffee:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80',
+ tea:'https://images.unsplash.com/photo-1544787219-7f47 također?auto=format&fit=crop&w=700&q=80',
+ lemonade:'https://images.unsplash.com/photo-1513558161293-cdaa2ea23384?auto=format&fit=crop&w=700&q=80',
+ roll:'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=700&q=80',
+ tempura:'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=700&q=80',
+ baked:'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=700&q=80'
+};
+// All prices are in Kyrgyz som. Pizza has two size variants.
+const products=[];
+function add(name,cat,price,img,desc=''){products.push({id:products.length,name,cat,price,img:photo[img]||photo.roll,desc});}
+[
+['ШАУРМА','🌯',[
+['Шаурма с курицей',230,'shawarma'],['Шаурма запечённая',220,'shawarma'],['Шаурма',200,'shawarma'],['Шаурма мега',250,'shawarma'],['Мини шаурма',170,'shawarma'],['Донер (гамбургер)',170,'burger'],['Донер на тарелке',280,'shawarma']]],
+['ПИЦЦА','🍕',[
+['Пепперони · 30 см',400,'pizza'],['Пепперони · 35 см',460,'pizza'],['Ассорти · 30 см',440,'pizza'],['Ассорти · 35 см',490,'pizza'],['Цезарь · 30 см',380,'pizza'],['Цезарь · 35 см',440,'pizza'],['Сырный · 30 см',380,'pizza'],['Сырный · 35 см',440,'pizza'],['Мясной · 30 см',440,'pizza'],['Мясной · 35 см',490,'pizza'],['Чили · 30 см',330,'pizza'],['Чили · 35 см',420,'pizza'],['Пицца с курицей · 30 см',350,'pizza'],['Пицца с курицей · 35 см',400,'pizza'],['Маргарита · 30 см',320,'pizza'],['Маргарита · 35 см',400,'pizza']]],
+['ЗАКУСКИ','🍟',[
+['Картошка фри',100,'fries'],['Наггетсы',120,'nuggets'],['Крылышки',250,'wings'],['Крылышки · 1 кг',850,'wings']]],
+['ДОПОЛНИТЕЛЬНО','🍔',[
+['Бургер Майами',220,'burger'],['Бургер Чикен',220,'burger'],['Рамен с курицей',250,'ramen']]],
+['НАПИТКИ','☕',[
+['Кофе (стакан)',50,'coffee'],['Чай (чайник)',50,'tea'],['Фруктовый чай',70,'tea']]],
+['ЛИМОНАДЫ','🍋',[
+['Лимонады',120,'lemonade']]],
+['ХОЛОДНЫЕ РОЛЛЫ','🍣',[
+['Филадельфия',300,'roll'],['Филадельфия с огурцом',300,'roll'],['Калифорния с крабом',280,'roll'],['Калифорния',280,'roll'],['Ролл с лососем',180,'roll'],['Ролл с огурцом',110,'roll'],['Ролл с угрём',150,'roll'],['Ролл с креветкой',150,'roll'],['Ролл с крабом',150,'roll'],['Снежный краб',280,'roll'],['Дракон',300,'roll']]],
+['ЖАРЕНЫЕ РОЛЛЫ (ТЕМПУРА)','🔥',[
+['Темпура ролл кайсен',240,'tempura'],['Лосось терияки',240,'tempura'],['Темпура с курицей',220,'tempura'],['Темпура с креветкой',230,'tempura'],['Темпура с крабом',220,'tempura'],['Темпура с лососем',240,'tempura'],['Темпура с угрём',250,'tempura']]],
+['ЗАПЕЧЁННЫЕ РОЛЛЫ','🍣',[
+['Chicken запечённый',250,'baked'],['Лосось с сыром',250,'baked'],['Запечённый ролл с курицей',230,'baked'],['Запечённый ролл с лососем',250,'baked'],['Запечённый ролл с угрём',250,'baked']]]
+].forEach(([cat,icon,items])=>items.forEach(([name,price,img])=>add(name,cat,price,img)));
+
+// Individual photos for menu cards. Photos are illustrative and loaded from Unsplash.
+const individualPhotos = {
+'Шаурма с курицей':'photo-1529006557810-274b9b2fc783',
+'Шаурма запечённая':'photo-1561651823-34feb02250e4',
+'Шаурма':'photo-1529006557810-274b9b2fc783',
+'Шаурма мега':'photo-1561758033-d89a9ad46330',
+'Мини шаурма':'photo-1626700051175-6818013e1d4f',
+'Донер (гамбургер)':'photo-1568901346375-23c9450c58cd',
+'Донер на тарелке':'photo-1547592180-85f173990554',
+'Пепперони · 30 см':'photo-1628840042765-356cda07504e',
+'Пепперони · 35 см':'photo-1571407970349-bc81e7e96d47',
+'Ассорти · 30 см':'photo-1579751626657-72bc17010498',
+'Ассорти · 35 см':'photo-1513104890138-7c749659a591',
+'Цезарь · 30 см':'photo-1571407970349-bc81e7e96d47',
+'Цезарь · 35 см':'photo-1579751626657-72bc17010498',
+'Сырный · 30 см':'photo-1593560708920-61dd98c46a4e',
+'Сырный · 35 см':'photo-1573821663912-6df40ddd9e2f',
+'Мясной · 30 см':'photo-1565299624946-b28f40a0ae38',
+'Мясной · 35 см':'photo-1571407970349-bc81e7e96d47',
+'Чили · 30 см':'photo-1579751626657-72bc17010498',
+'Чили · 35 см':'photo-1513104890138-7c749659a591',
+'Пицца с курицей · 30 см':'photo-1593560708920-61dd98c46a4e',
+'Пицца с курицей · 35 см':'photo-1604382355076-af4b0eb60143',
+'Маргарита · 30 см':'photo-1574071318508-1cdbab80d002',
+'Маргарита · 35 см':'photo-1571407970349-bc81e7e96d47',
+'Картошка фри':'photo-1573080496219-bb080dd4f877',
+'Наггетсы':'photo-1562967914-608f82629710',
+'Крылышки':'photo-1527477396000-e27163b481c2',
+'Крылышки · 1 кг':'photo-1608039829572-78524f79c4c7',
+'Бургер Майами':'photo-1568901346375-23c9450c58cd',
+'Бургер Чикен':'photo-1606755962773-d324e0a13086',
+'Рамен с курицей':'photo-1569718212165-3a8278d5f624',
+'Кофе (стакан)':'photo-1509042239860-f550ce710b93',
+'Чай (чайник)':'photo-1576092768241-dec231879fc3',
+'Фруктовый чай':'photo-1556679343-c7306c1976bc',
+'Лимонады':'photo-1513558161293-cdaa2ea23384',
+'Филадельфия':'photo-1579871494447-9811cf80d66c',
+'Филадельфия с огурцом':'photo-1579584425555-c3ce17fd4351',
+'Калифорния с крабом':'photo-1617196034796-73dfa7b1fd56',
+'Калифорния':'photo-1579871494447-9811cf80d66c',
+'Ролл с лососем':'photo-1579871494447-9811cf80d66c',
+'Ролл с огурцом':'photo-1617196034796-73dfa7b1fd56',
+'Ролл с угрём':'photo-1579584425555-c3ce17fd4351',
+'Ролл с креветкой':'photo-1579584425555-c3ce17fd4351',
+'Ролл с крабом':'photo-1617196034796-73dfa7b1fd56',
+'Снежный краб':'photo-1579871494447-9811cf80d66c',
+'Дракон':'photo-1579584425555-c3ce17fd4351',
+'Темпура ролл кайсен':'photo-1617196034796-73dfa7b1fd56',
+'Лосось терияки':'photo-1579584425555-c3ce17fd4351',
+'Темпура с курицей':'photo-1617196034796-73dfa7b1fd56',
+'Темпура с креветкой':'photo-1579871494447-9811cf80d66c',
+'Темпура с крабом':'photo-1579584425555-c3ce17fd4351',
+'Темпура с лососем':'photo-1617196034796-73dfa7b1fd56',
+'Темпура с угрём':'photo-1579871494447-9811cf80d66c',
+'Chicken запечённый':'photo-1579584425555-c3ce17fd4351',
+'Лосось с сыром':'photo-1617196034796-73dfa7b1fd56',
+'Запечённый ролл с курицей':'photo-1579871494447-9811cf80d66c',
+'Запечённый ролл с лососем':'photo-1579584425555-c3ce17fd4351',
+'Запечённый ролл с угрём':'photo-1617196034796-73dfa7b1fd56'
+};
+const photoFallbacks = [
+'photo-1579871494447-9811cf80d66c','photo-1579584425555-c3ce17fd4351',
+'photo-1617196034796-73dfa7b1fd56','photo-1579871494447-9811cf80d66c'
+];
+products.forEach((p, i) => {
+  let id = individualPhotos[p.name];
+  if (!id || id.includes('sushi')) {
+    const rollIds = ['photo-1579871494447-9811cf80d66c','photo-1579584425555-c3ce17fd4351','photo-1617196034796-73dfa7b1fd56'];
+    if (p.cat.includes('РОЛЛ')) id = rollIds[i % rollIds.length];
+  }
+  if (id && !id.includes('sushi')) p.img = `https://images.unsplash.com/${id}?auto=format&fit=crop&w=700&q=80`;
+});
+
+const cart={}; let activeCategory='Все';
+const cats=['Все',...new Set(products.map(p=>p.cat))];
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function money(n){return n.toLocaleString('ru-RU')+' сом';}
+function count(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function total(){return products.reduce((s,p)=>s+p.price*(cart[p.id]||0),0)}
+function renderNav(){document.getElementById('categoryNav').innerHTML=cats.map(c=>`<button class="${activeCategory===c?'active':''}" onclick="chooseCategory(${JSON.stringify(c)})">${c==='Все'?'🍽️ Все блюда':c}</button>`).join('')}
+function chooseCategory(c){activeCategory=c;renderNav();renderMenu();if(c!=='Все')document.getElementById('menuContent').scrollIntoView({behavior:'smooth',block:'start'})}
+function renderMenu(){
+ const q=document.getElementById('search').value.trim().toLowerCase();
+ let list=products.filter(p=>(activeCategory==='Все'||p.cat===activeCategory)&&p.name.toLowerCase().includes(q));
+ let groups={};list.forEach(p=>(groups[p.cat]??=[]).push(p));
+ document.getElementById('menuContent').innerHTML=Object.entries(groups).map(([cat,items])=>`<section><h3 class="category-title">${safe(cat)}</h3><div class="grid">${items.map(p=>`<article class="product"><img src="${p.img}" alt="${safe(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=75'"><div class="product-body"><h3>${safe(p.name)}</h3><p class="desc">${cat==='ПИЦЦА'?'Свежая пицца, приготовленная с любовью':'Свежеприготовленное блюдо'}</p><div class="product-bottom"><span class="price">${money(p.price)}</span>${cart[p.id]?`<div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><b>${cart[p.id]}</b><button onclick="changeQty(${p.id},1)">+</button></div>`:`<button class="add" aria-label="Добавить ${safe(p.name)}" onclick="changeQty(${p.id},1)">+</button>`}</div></div></article>`).join('')}</div></section>`).join('')||'<div class="empty">Ничего не найдено. Попробуй другое название.</div>';
+}
+function changeQty(id,delta){cart[id]=Math.max(0,(cart[id]||0)+delta);if(!cart[id])delete cart[id];renderMenu();renderCart();document.getElementById('cartCount').textContent=count();document.getElementById('floatingCount').textContent=count();document.getElementById('floatingTotal').textContent=money(total());}
+function renderCart(){
+ const items=products.filter(p=>cart[p.id]);
+ document.getElementById('cartItems').innerHTML=items.length?items.map(p=>`<div class="cart-line"><div>${safe(p.name)}<small>${cart[p.id]} × ${money(p.price)} <button class="outline" style="padding:3px 7px;margin-left:5px;border-radius:6px" onclick="changeQty(${p.id},-1)">−</button> <button class="outline" style="padding:3px 7px;border-radius:6px" onclick="changeQty(${p.id},1)">+</button></small></div><strong>${money(p.price*cart[p.id])}</strong></div>`).join(''):'<div class="empty">Пока корзина пуста. Выбери что-нибудь вкусное!</div>';
+ document.getElementById('totalPrice').textContent=money(total());
+}
+function goCart(){document.getElementById('order').scrollIntoView({behavior:'smooth'});}
+function toggleAddress(){const delivery=document.querySelector('input[name="fulfillment"]:checked').value==='Доставка';document.getElementById('addressField').style.display=delivery?'flex':'none';document.getElementById('customerAddress').required=delivery;}
+function openWhatsApp(text){const url='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(text);window.open(url,'_blank');}
+function sendOrder(e){
+ e.preventDefault();
+ if(!count()){alert('Сначала добавь хотя бы одно блюдо в корзину.');return;}
+ const name=document.getElementById('customerName').value.trim(), phone=document.getElementById('customerPhone').value.trim();
+ const fulfillment=document.querySelector('input[name="fulfillment"]:checked').value;
+ const address=fulfillment==='Доставка'?document.getElementById('customerAddress').value.trim():'Самовывоз из кафе';
+ const payment=document.getElementById('payment').value, note=document.getElementById('orderNote').value.trim();
+ let lines=products.filter(p=>cart[p.id]).map(p=>`• ${p.name} × ${cart[p.id]} = ${money(p.price*cart[p.id])}`);
+ let message=`🍽️ *НОВЫЙ ЗАКАЗ — ДОНЕР CITY*\n\n👤 Имя: ${name}\n📞 Телефон клиента: ${phone}\n📦 Получение: ${fulfillment}\n📍 Адрес: ${address}\n💳 Оплата: ${payment}\n\n🛒 *ЗАКАЗ:*\n${lines.join('\n')}\n\n💰 *Итого за блюда: ${money(total())}*\n🚚 Доставка: стоимость уточнить у оператора${note?'\n\n📝 Комментарий: '+note:''}\n\nПожалуйста, подтвердите заказ и стоимость доставки.`;
+ openWhatsApp(message);
+}
+function sendReview(){
+ const txt=document.getElementById('reviewText').value.trim();if(!txt){alert('Напиши отзыв перед отправкой.');return;}
+ const type=document.querySelector('input[name="reviewType"]:checked').value;
+ const name=document.getElementById('reviewName').value.trim()||'Не указано';
+ openWhatsApp(`💬 *ОТЗЫВ — ДОНЕР CITY*\n\nТип: ${type}\nИмя: ${name}\nОтзыв:\n${txt}`);
+}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',2200)}
+renderNav();renderMenu();renderCart();toggleAddress();
+</script>
+</body>
+</html>
